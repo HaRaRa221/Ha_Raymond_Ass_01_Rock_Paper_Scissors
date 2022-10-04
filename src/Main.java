@@ -5,9 +5,13 @@ public class Main {
     public static void main(String[] args) {
         String choicePlayerA;
         String choicePlayerB;
-        boolean replay = true;
+        boolean rePlay = true;
+        String gameContinue;
+
         Scanner in = new Scanner(System.in);
 
+
+        do {
         System.out.println("Choose either (P)aper, (R)ock, or (S)cissors, Player A.");
         choicePlayerA = in.nextLine();
 
@@ -30,25 +34,29 @@ public class Main {
             } else {
                 System.out.println("Player A wins because Paper covers Rock.");
             }
-        }
-        else if (choicePlayerA.equalsIgnoreCase("S"))
-        {
-            if (choicePlayerB.equalsIgnoreCase("S"))
-            {
+        } else if (choicePlayerA.equalsIgnoreCase("S")) {
+            if (choicePlayerB.equalsIgnoreCase("S")) {
                 System.out.println("S x S is a tie.");
+            } else if (choicePlayerB.equalsIgnoreCase("R")) {
+                System.out.println("Player B wins because Rock beats Scissors");
+            } else {
+                System.out.println("Player A wins because Scissors cuts Paper.");
             }
-           else if (choicePlayerB.equalsIgnoreCase("R"))
-           {
-               System.out.println("Player B wins because Rock beats Scissors");
-           }
-           else
-           {
-               System.out.println("Player A wins because Scissors cuts Paper.");
-           }
+        } else {
+            System.out.println("You should only input (R)ock, (P)aper, or (S)cissors.");
+            rePlay = true;
+            rePlay = false;
         }
-        while (replay) {
-            System.out.println("Do you want to play again? (y/n)");
-            replay = in.nextLine().trim().equalsIgnoreCase("y");
+            System.out.println("Want to play this game again? [Y/N]");
+            gameContinue = in.nextLine();
+            if (gameContinue.equalsIgnoreCase("Y")) {
+                continue;
+            }
+            else if (gameContinue.equalsIgnoreCase("N")) {
+                System.out.println("We appreciate your time. Come and play again!");
+                System.exit(0);
+            }
         }
+        while (rePlay == true);
     }
 }
